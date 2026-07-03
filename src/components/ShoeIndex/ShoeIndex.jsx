@@ -55,7 +55,10 @@ const MainColumn = styled.div`
   flex: 1 1 0px;
 `;
 
-const Header = styled.header``;
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const Title = styled.h2`
   font-size: 1.5rem;
