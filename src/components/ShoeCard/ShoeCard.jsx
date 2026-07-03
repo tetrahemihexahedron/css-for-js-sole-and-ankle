@@ -36,11 +36,20 @@ const ShoeCard = ({
       ? { '--decoration': 'line-through', '--color': COLORS.gray[700] }
       : { '--decoration': 'none', '--color': 'inherit' };
 
+  const hasFlag = variant !== 'default';
+  const flagText = variant === 'on-sale' ? 'Sale' : 'Just Released';
+  const flagColor = variant === 'on-sale' ? COLORS.primary : COLORS.secondary;
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
+          {hasFlag && (
+            <ImageFlag style={{ '--flag-color': flagColor }}>
+              {flagText}
+            </ImageFlag>
+          )}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -73,6 +82,19 @@ const ImageWrapper = styled.div`
 const Image = styled.img`
   width: 100%;
   border-radius: 16px 16px 4px 4px;
+`;
+
+const ImageFlag = styled.div`
+  background-color: var(--flag-color);
+  color: ${COLORS.white};
+  font-weight: ${WEIGHTS.bold};
+  font-size: 0.875rem;
+  padding: 8px;
+  border-radius: 2px;
+
+  position: absolute;
+  top: 12px;
+  right: -4px;
 `;
 
 const Row = styled.div`
