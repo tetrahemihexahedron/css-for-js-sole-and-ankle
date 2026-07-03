@@ -31,6 +31,11 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+  const priceStyles =
+    variant === 'on-sale'
+      ? { '--decoration': 'line-through', '--color': COLORS.gray[700] }
+      : { '--decoration': 'none', '--color': 'inherit' };
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
@@ -40,7 +45,7 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price style={priceStyles}>{formatPrice(price)}</Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
@@ -81,7 +86,10 @@ const Name = styled.h3`
   color: ${COLORS.gray[900]};
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+  text-decoration-line: var(--decoration);
+  color: var(--color);
+`;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
